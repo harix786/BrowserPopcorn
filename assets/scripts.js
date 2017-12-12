@@ -4,7 +4,7 @@ function loadMovies() {
 	if(window.page == '1') {
 		$('.movies').html('');
 	}
-	$.get('http://api.popcorntimefree.info/?action=movies&query=' + encodeURIComponent(query) + '&page=' + window.page, function(data) {
+	$.get('http://butter.vodo.net/popcorn/?action=movies&query=' + encodeURIComponent(query) + '&page=' + window.page, function(data) {
 		if(data.pages == 0) {
 			$('.no-results').fadeIn(300);
 		} else {
@@ -27,7 +27,7 @@ function loadMovie(id) {
 	$('.search').fadeOut(300);
 	$('.load-more').fadeOut(300);
 	$('.search-box').val('');
-	$.get('http://api.popcorntimefree.info/?action=details&id=' + id, function(movie) {
+	$.get('http://butter.vodo.net/popcorn/?action=details&id=' + id, function(movie) {
 		$('.movie-infobox .movie-poster img').attr('src', movie.poster);
 		$('.movie-infobox .movie-title').html(movie.title + ' (' + movie.year + ')');
 		$('.movie-infobox .movie-description p').html(movie.plot);
@@ -36,7 +36,7 @@ function loadMovie(id) {
 		$('.movie-infobox .movie-meta .movie-votes').html(movie.votes);
 		$('.loading-player').fadeIn(300);
 		$('.player').fadeIn(300);
-		$.get('http://api.popcorntimefree.info/?action=subtitles&id=' + id, function(subtitles) {
+		$.get('http://butter.vodo.net/popcorn/?action=subtitles&id=' + id, function(subtitles) {
 			var tracks = [];
 			$.each(subtitles, function(language, file) {
 				tracks.push({ 
